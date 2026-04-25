@@ -27,7 +27,7 @@ body {
   color: var(--white);
   font-family: "Barlow", sans-serif;
   overflow-x: hidden;
-  cursor: crosshair;
+  cursor: default; /* Updated from crosshair */
 }
 
 body::after {
@@ -66,7 +66,7 @@ input,
 select,
 textarea,
 a {
-  cursor: crosshair;
+  cursor: default; /* Updated from crosshair */
 }
 
 .sr-only {
@@ -139,12 +139,6 @@ a {
 .brand-mark {
   padding: 0 1rem;
   border-right: 1px solid rgba(240, 236, 224, 0.15);
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-bright);
 }
 
 .brand-copy {
@@ -722,7 +716,7 @@ a {
 .sponsor-grid,
 .community-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Adjusted to repeat(4) for partners */
   gap: 0;
 }
 
@@ -1008,9 +1002,15 @@ a {
   width: 100%;
   padding: 0.95rem 1rem;
   border: 1px solid rgba(240, 236, 224, 0.14);
-  background: rgba(240, 236, 224, 0.03);
-  color: var(--white);
+  background: #111111; /* Solid dark background for consistency */
+  color: var(--white); /* Main field text color */
   border-radius: 0;
+}
+
+.register-form select option {
+  background-color: var(--white);
+  color: var(--black); /* Ensures text is visible regardless of browser defaults */
+  font-family: sans-serif; /* Better compatibility for dropdown menus */
 }
 
 .register-form input::placeholder,
