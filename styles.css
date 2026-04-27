@@ -27,7 +27,7 @@ body {
   color: var(--white);
   font-family: "Barlow", sans-serif;
   overflow-x: hidden;
-  cursor: default; /* Updated from crosshair */
+  cursor: default; /* Sets standard background cursor to default */
 }
 
 body::after {
@@ -61,12 +61,19 @@ textarea {
   font: inherit;
 }
 
+/* Updated: Interactive elements now use the pointer cursor */
 button,
-input,
 select,
-textarea,
-a {
-  cursor: default; /* Updated from crosshair */
+a,
+.agenda-filter,
+.faq-question {
+  cursor: pointer;
+}
+
+/* Inputs and textareas use the text cursor for clarity */
+input,
+textarea {
+  cursor: text;
 }
 
 .sr-only {
@@ -716,7 +723,7 @@ a {
 .sponsor-grid,
 .community-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Adjusted to repeat(4) for partners */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
 }
 
@@ -975,6 +982,81 @@ a {
   padding: 2rem;
 }
 
+.register-card {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.register-card-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.register-card h3 {
+  margin: 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.register-card > p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.register-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.register-card-actions .button {
+  flex: 1 1 240px;
+}
+
+.register-link-shell {
+  margin: 0;
+  padding: 1rem 1.15rem;
+  display: grid;
+  gap: 0.45rem;
+  border: 1px solid rgba(240, 236, 224, 0.12);
+  background: rgba(240, 236, 224, 0.02);
+}
+
+.register-link-shell span {
+  color: rgba(240, 236, 224, 0.55);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.register-inline-link {
+  color: var(--gold-bright);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  word-break: break-all;
+}
+
+.register-inline-link:hover {
+  color: var(--white);
+}
+
+.register-meta {
+  margin: 0;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1002,15 +1084,9 @@ a {
   width: 100%;
   padding: 0.95rem 1rem;
   border: 1px solid rgba(240, 236, 224, 0.14);
-  background: #111111; /* Solid dark background for consistency */
-  color: var(--white); /* Main field text color */
+  background: rgba(240, 236, 224, 0.03);
+  color: var(--white);
   border-radius: 0;
-}
-
-.register-form select option {
-  background-color: var(--white);
-  color: var(--black); /* Ensures text is visible regardless of browser defaults */
-  font-family: sans-serif; /* Better compatibility for dropdown menus */
 }
 
 .register-form input::placeholder,
