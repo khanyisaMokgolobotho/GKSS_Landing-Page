@@ -1,60 +1,26 @@
-# 🚀 Ga-Rankuwa Career Tech Expo 2026
+# Ga-Rankuwa Career Tech Expo 2026
 
-A high-impact, responsive landing page for the **Ga-Rankuwa Career Tech Expo**. This platform is designed to bridge the gap between high school learners and the evolving world of technology, specifically spotlighting career paths in the **AI Era**.
+Responsive landing page for the Ga-Rankuwa Career Tech Expo.
 
----
+## Event Details
 
-## 📅 Event Details
+- Date: 7 May 2026
+- Time: 09:00 - 13:00
+- Venue: TUT Ga-Rankuwa Campus
+- Registration: https://sonke.gklink.co/event/gcexpo
 
-| Detail | Information |
-| :--- | :--- |
-| **Date** | 07 May 2026 |
-| **Time** | 09:00 – 13:00 |
-| **Venue** | TUT Ga-Rankuwa Campus |
-| **Focus** | High School Learners (Ga-Rankuwa Communities) |
+## Key Features
 
----
+- Real-time countdown to expo day
+- Responsive navigation with working in-page anchors
+- About, experience, agenda, partners, and FAQ sections
+- Live registration handoff to the Sonke public registration page
+- Copy-link helper for sharing the registration URL
+- Registration messaging aligned to gender, career-interest, role-capture, and confirmation-email requirements
 
-## 💡 Key Features
+## Project Structure
 
-* **Real-time Countdown**: A dynamic timer ticking down to the event start on **May 7th**.
-* **Live Impact Metrics**: Animated counters showing:
-    * **70+** Expected Learners.
-    * **7** Participating Schools.
-    * **4** Expert Speakers.
-    * **10+** Dedicated Volunteers.
-* **Curated Agenda**: A streamlined schedule prioritizing **Panel Discussions** and **Hands-on Workshops**.
-* **Validated Registration**: A user-friendly form capturing critical data points:
-    * Gender & Organization.
-    * Specific **Career Interests**.
-    * Interest Tracks (AI, Workshops, etc.).
-
----
-
-## 🤝 Partners & Sponsors
-
-We are proud to collaborate with industry leaders to empower the youth of Ga-Rankuwa:
-- **TUT** (Tshwane University of Technology)
-- **ALX Africa**
-- **Geekulcha**
-- **WeThinkCode_**
-
----
-
-## 🛠️ Technical Stack
-
-- **Frontend**: HTML5 & CSS3 (Custom variables, Flexbox, and Grid).
-- **Interactivity**: Vanilla JavaScript (ES6+).
-- **Animations**: `IntersectionObserver` API for scroll-triggered reveal effects and numerical count-ups.
-- **CI/CD**: Automated deployment via **GitHub Actions** to **GitHub Pages**.
-
----
-
-## 📂 Project Structure
-
-- `index.html` - Main landing page structure and content.
-- `styles.css` - Custom styling, including "Dark Mode" aesthetics and mobile responsiveness.
-- `script.js` - Logic for the countdown, animations, and form handling.
-- `.github/workflows/` - Automated deployment pipeline.
-
----
+- `index.html` - Main landing page structure and content
+- `styles.css` - Visual styling and responsive layout rules
+- `script.js` - Countdown, reveal animations, FAQ interactions, and copy-link behavior
+- `.github/workflows/deploy-pages.yml` - GitHub Pages deployment workflow
