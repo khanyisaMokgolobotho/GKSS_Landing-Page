@@ -23,4 +23,11 @@ Responsive landing page for the Ga-Rankuwa Career Tech Expo.
 - `index.html` - Main landing page structure and content
 - `styles.css` - Visual styling and responsive layout rules
 - `script.js` - Countdown, reveal animations, FAQ interactions, and copy-link behavior
+- `scripts/build-pages.ps1` - Creates the GitHub Pages deploy artifact and cache-busts static assets on each deploy
 - `.github/workflows/deploy-pages.yml` - GitHub Pages deployment workflow
+
+## Deployment
+
+Pushes to `main` automatically trigger the GitHub Pages workflow.
+
+The workflow now builds a `dist/` artifact before deploy and appends a deploy-specific version to `styles.css` and `script.js`, which helps the live site pick up fresh changes without users needing a hard refresh.
