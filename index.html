@@ -17,40 +17,30 @@
 
   <div class="announcement-bar">
     <div class="announcement-copy">
-      <span>Ga-Rankuwa Career Tech Expo Presents</span>
-      <span>7 May 2026 - YMCA Ga-Rankuwa</span>
-      <span>Public registration now live</span>
+        <span>Ga-Rankuwa Career Tech Expo Presents</span>
+        <span>7 May 2026 - YMCA Ga-Rankuwa</span>
+        <span>High school learner focus</span>
     </div>
-    <a class="announcement-link" href="https://sonke.gklink.co/event/gcexpo" target="_blank" rel="noopener noreferrer">Open registration</a>
+    <a class="announcement-link" href="#register">Reserve your seat</a>
   </div>
 
   <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Ga-Rankuwa Career Tech Expo home">
-      <span class="brand-mark">
-        <img src="https://img.icons8.com/ios-filled/50/f5a623/circuit.png" alt="Tech Expo Logo" style="height: 30px; width: auto; display: block;">
-      </span>
-      <span class="brand-copy">
-        <strong>Ga-Rankuwa Expo</strong>
-        <span>Career Tech 2026</span>
-      </span>
+    <a class="brand" href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+        <img src="https://img.icons8.com/ios-filled/50/f5a623/circuit.png" alt="Tech Expo Logo" style="height: 32px; width: auto; flex-shrink: 0;">
+        <span class="brand-copy">
+            <strong>Ga-Rankuwa Expo</strong>
+            <span>Career Tech 2026</span>
+        </span>
     </a>
-
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="nav-toggle-line"></span>
-      <span class="nav-toggle-line"></span>
-      <span class="nav-toggle-line"></span>
-      <span class="sr-only">Toggle navigation</span>
-    </button>
-
-    <nav class="site-nav" id="site-nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#agenda">Agenda</a>
-      <a href="#partners">Partners</a>
-      <a href="#faq">FAQ</a>
-      <a class="button button-small button-ghost" href="https://sonke.gklink.co/event/gcexpo" target="_blank" rel="noopener noreferrer">Register</a>
+    <nav class="site-nav" id="site-nav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#partners">Partners</a>
+        <a href="#faq">FAQ</a>
+        <a class="button button-small button-ghost" href="#register">Register</a>
     </nav>
-  </header>
+</header>
 
   <main>
     <section class="hero section" id="home">
@@ -83,9 +73,9 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="https://sonke.gklink.co/event/gcexpo" target="_blank" rel="noopener noreferrer">Open live registration</a>
+          <a class="button button-primary" href="#register">Register for free</a>
           <a class="button button-secondary" href="#agenda">Explore the agenda</a>
-        </div>
+      </div>
 
         <ul class="hero-highlights" aria-label="Event highlights">
           <li>70+ learner places</li>
@@ -372,54 +362,73 @@
     </section>
 
     <section class="section register-section" id="register">
-      <div class="register-layout">
-        <div class="register-copy" data-reveal>
-          <p class="eyebrow">Registration</p>
-          <h2>The public registration page is now live.</h2>
-          <p>
-            Registration now happens on Sonke so attendee data, cleaner role capture, and confirmation
-            emails all stay in one place.
-          </p>
+        <div class="register-layout">
+            <div class="register-copy" data-reveal>
+                <p class="eyebrow">Register</p>
+                <h2>Save your place.</h2>
+                <p>Tell us what you want to learn so the team can plan learner flow and support for schools across Ga-Rankuwa.</p>
+                <ul class="register-points">
+                    <li>Choose the topic area you care about most</li>
+                    <li>Provide a phone number for event updates</li>
+                    <li>Get an instant on-page confirmation</li>
+                </ul>
+            </div>
 
-          <ul class="register-points">
-            <li>Use the public Sonke page to complete your registration</li>
-            <li>Gender and career interests are part of the live form</li>
-            <li>Attending As has more specific role options for cleaner reporting</li>
-            <li>A confirmation email is sent after successful registration</li>
-          </ul>
+            <form class="register-form surface-card" id="registration-form" novalidate data-reveal>
+                <div class="form-grid">
+                    <label>
+                        Full name
+                        <input type="text" name="fullName" placeholder="Your full name" required>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+
+                    <label>
+                        Phone Number
+                        <input type="tel" name="phone" placeholder="e.g. 071 234 5678" required>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+
+                    <label>
+                        Gender
+                        <select name="gender" required style="color: var(--white); background: #111;">
+                            <option value="" style="color: #000; background: #fff;">Select Gender</option>
+                            <option value="Male" style="color: #000; background: #fff;">Male</option>
+                            <option value="Female" style="color: #000; background: #fff;">Female</option>
+                            <option value="Other" style="color: #000; background: #fff;">Other</option>
+                        </select>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+
+                    <label>
+                        School or organisation
+                        <input type="text" name="organization" placeholder="Your school name" required>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+
+                    <label class="form-span-full">
+                        Career Interests
+                        <input type="text" name="careerInterests" placeholder="e.g. Software Engineering, AI, Robotics" required>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+
+                    <label class="form-span-full">
+                        Main interest track
+                        <select name="interest" required style="color: var(--white); background: #111;">
+                            <option value="" style="color: #000; background: #fff;">Select a track</option>
+                            <option value="AI Careers" style="color: #000; background: #fff;">AI Careers</option>
+                            <option value="Speaker Sessions" style="color: #000; background: #fff;">Speaker Sessions</option>
+                            <option value="Future-skills Workshops" style="color: #000; background: #fff;">Future-skills Workshops</option>
+                        </select>
+                        <span class="field-error" aria-live="polite"></span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button class="button button-primary" type="submit">Save my seat interest</button>
+                </div>
+                <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
+            </form>
         </div>
-
-        <div class="register-form register-card surface-card" data-reveal>
-          <div class="register-card-topline">
-            <span class="status-pill">Live now</span>
-            <span class="card-kicker">Sonke-hosted registration</span>
-          </div>
-
-          <h3>Complete your registration on the public event page.</h3>
-          <p>
-            The live registration flow carries the updated event details and captures the data points
-            needed for cleaner attendee reporting before sending a confirmation email.
-          </p>
-
-          <div class="register-card-actions">
-            <a class="button button-primary" href="https://sonke.gklink.co/event/gcexpo" target="_blank" rel="noopener noreferrer">Open registration page</a>
-            <button class="button button-secondary copy-link-button" type="button" data-copy-link="https://sonke.gklink.co/event/gcexpo">Copy registration link</button>
-          </div>
-
-          <p class="register-link-shell">
-            <span>Public link</span>
-            <a class="register-inline-link" href="https://sonke.gklink.co/event/gcexpo" target="_blank" rel="noopener noreferrer">sonke.gklink.co/event/gcexpo</a>
-          </p>
-
-          <ul class="meta-list register-meta">
-            <li>Includes gender and career interests as captured traits</li>
-            <li>Uses more specific Attending As options for clearer data quality</li>
-            <li>Sends a confirmation email after registration is completed</li>
-          </ul>
-
-          <p class="form-feedback" id="register-link-feedback" aria-live="polite"></p>
-        </div>
-      </div>
     </section>
   </main>
 

@@ -7,13 +7,15 @@ const countdownRoot = document.querySelector("[data-countdown]");
 const revealElements = document.querySelectorAll("[data-reveal]");
 const faqButtons = document.querySelectorAll(".faq-question");
 const footerYear = document.querySelector("#footer-year");
-const copyLinkButton = document.querySelector("[data-copy-link]");
-const linkFeedback = document.querySelector("#register-link-feedback");
+const registrationForm = document.querySelector("#registration-form");
+const feedback = document.querySelector("#form-feedback");
 
+// 1. Update Footer Year
 if (footerYear) {
   footerYear.textContent = `Event Build ${new Date().getFullYear()}`;
 }
 
+// 2. Navigation Toggle Logic
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
@@ -28,6 +30,7 @@ if (navToggle && siteNav) {
   });
 }
 
+// 3. Countdown Timer Logic (Target: 7 May 2026)
 if (countdownRoot) {
   const endDate = new Date(countdownRoot.dataset.countdown);
   const countdownLabel = document.querySelector("[data-countdown-label]");
@@ -43,16 +46,8 @@ if (countdownRoot) {
     const diff = endDate.getTime() - now.getTime();
 
     if (diff <= 0) {
-      Object.values(units).forEach((unit) => {
-        if (unit) {
-          unit.textContent = "00";
-        }
-      });
-
-      if (countdownLabel) {
-        countdownLabel.textContent = "Expo day has arrived. Welcome to TUT Ga Rankuwa!";
-      }
-
+      Object.values(units).forEach((unit) => { if (unit) unit.textContent = "00"; });
+      if (countdownLabel) countdownLabel.textContent = "Welcome to YMCA Ga-Rankuwa! Expo day is here.";
       return;
     }
 
@@ -72,6 +67,7 @@ if (countdownRoot) {
   window.setInterval(updateCountdown, 1000);
 }
 
+// 4. Numerical Countup Animation
 const runCountup = (element) => {
   const target = Number(element.dataset.countup);
   const suffix = element.dataset.countupSuffix || "";
@@ -82,109 +78,79 @@ const runCountup = (element) => {
     const progress = Math.min((timestamp - startTime) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = Math.round(target * eased);
-
     element.textContent = `${value}${suffix}`;
-
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
+    if (progress < 1) window.requestAnimationFrame(step);
   };
-
   window.requestAnimationFrame(step);
 };
 
+// 5. Scroll Reveal & Countup Trigger
 if (revealElements.length) {
   const showElement = (element) => {
     element.classList.add("is-visible");
-
-    if (element.hasAttribute("data-countup")) {
-      runCountup(element);
-    }
-
-    element.querySelectorAll("[data-countup]").forEach((child) => {
-      runCountup(child);
-    });
+    if (element.hasAttribute("data-countup")) runCountup(element);
+    element.querySelectorAll("[data-countup]").forEach(runCountup);
   };
 
   if ("IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
+        if (!entry.isIntersecting) return;
         showElement(entry.target);
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.15 });
 
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
+    revealElements.forEach((el) => revealObserver.observe(el));
   } else {
-    revealElements.forEach((element) => {
-      showElement(element);
-    });
+    revealElements.forEach(showElement);
   }
 }
 
+// 6. FAQ Accordion Logic
 faqButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
     const expanded = button.getAttribute("aria-expanded") === "true";
 
-    faqButtons.forEach((otherButton) => {
-      otherButton.setAttribute("aria-expanded", "false");
-      const otherAnswer = otherButton.nextElementSibling;
-      if (otherAnswer) {
-        otherAnswer.classList.remove("is-open");
-      }
+    faqButtons.forEach((other) => {
+      other.setAttribute("aria-expanded", "false");
+      if (other.nextElementSibling) other.nextElementSibling.classList.remove("is-open");
     });
 
     if (!expanded) {
       button.setAttribute("aria-expanded", "true");
-      if (answer) {
-        answer.classList.add("is-open");
-      }
+      if (answer) answer.classList.add("is-open");
     }
   });
 });
 
-if (copyLinkButton && linkFeedback) {
-  const fallbackCopy = (value) => {
-    const tempField = document.createElement("textarea");
-    tempField.value = value;
-    tempField.setAttribute("readonly", "");
-    tempField.style.position = "absolute";
-    tempField.style.left = "-9999px";
-    document.body.appendChild(tempField);
-    tempField.select();
+// 7. Internal Registration Form Handling (Phone Only)
+if (registrationForm && feedback) {
+  registrationForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    feedback.textContent = "";
 
-    const copied = document.execCommand("copy");
-    document.body.removeChild(tempField);
-    return copied;
-  };
+    const formData = new FormData(registrationForm);
+    const name = formData.get("fullName");
+    const phone = formData.get("phone").replace(/\s/g, "");
 
-  copyLinkButton.addEventListener("click", async () => {
-    const registrationUrl = copyLinkButton.dataset.copyLink || "";
-
-    if (!registrationUrl) {
+    // Simple 10-digit South African Phone Validation
+    if (!/^\d{10}$/.test(phone)) {
+      feedback.textContent = "Please enter a valid 10-digit phone number.";
+      feedback.className = "form-feedback is-error";
       return;
     }
 
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(registrationUrl);
-      } else if (!fallbackCopy(registrationUrl)) {
-        throw new Error("Copy command is unavailable.");
-      }
-
-      linkFeedback.textContent = "Registration link copied.";
-      linkFeedback.className = "form-feedback is-success";
-    } catch (error) {
-      console.warn("Unable to copy the registration link.", error);
-      linkFeedback.textContent = "Copy failed. Use the public link shown above.";
-      linkFeedback.className = "form-feedback is-error";
-    }
+    // Success Simulation
+    feedback.textContent = `Thanks, ${name}. Your interest for the expo has been recorded!`;
+    feedback.className = "form-feedback is-success";
+    registrationForm.reset();
   });
 }
+
+// 8. Smooth Scroll to Top Fix
+document.querySelector('a[href="#top"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});

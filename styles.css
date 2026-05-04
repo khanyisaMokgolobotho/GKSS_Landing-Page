@@ -1107,6 +1107,18 @@ textarea {
   border-color: var(--red-bright);
 }
 
+.register-form select option {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 10px;
+}
+
+/* Ensures the selected value remains visible in the main box */
+.register-form select {
+    color: var(--white);
+    background-color: #111111;
+}
+
 .field-error {
   min-height: 1rem;
   color: var(--red-bright);
